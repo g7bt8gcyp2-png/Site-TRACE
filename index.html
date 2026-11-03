@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TRACE — Precisão em cada movimento</title>
+  <meta name="description" content="TRACE, marca própria de periféricos gamer da Inicial Games. Linhas Standard e Skill.">
+  <meta name="theme-color" content="#08070d">
+  <link rel="icon" href="assets/trace-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="is-intro">
+
+  <canvas id="trail" aria-hidden="true"></canvas>
+
+  <header class="nav">
+    <a href="#top" class="nav__brand" aria-label="TRACE — início">
+      <img src="assets/trace-mark.png" alt="" width="34" height="37">
+      <span>TRACE</span>
+    </a>
+    <nav class="nav__links">
+      <a href="#linhas" data-goto="standard">Standard</a>
+      <a href="#linhas" data-goto="skill">Skill</a>
+    </nav>
+  </header>
+
+  <!-- 1. INTRO / HERO -->
+  <section class="hero" id="top">
+    <div class="hero__grid" aria-hidden="true"></div>
+    <div class="hero__halo" aria-hidden="true"></div>
+    <div class="hero__stage">
+      <img class="hero__logo" id="heroLogo" src="assets/trace-logo.webp" alt="TRACE" width="1831" height="732">
+    </div>
+    <canvas id="snake" aria-hidden="true"></canvas>
+    <button class="skip" id="skipIntro" type="button">Pular intro</button>
+    <a class="scroll-cue" href="#slogan" aria-label="Rolar para baixo">
+      <span class="scroll-cue__mouse"><span></span></span>
+      <span class="scroll-cue__label">Role</span>
+    </a>
+  </section>
+
+  <!-- 2. SLOGAN -->
+  <section class="slogan" id="slogan">
+    <div class="slogan__sticky">
+      <svg class="slogan__trace" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
+        <path id="sloganPath" d="M-20 220 C 160 60, 300 280, 470 160 S 760 40, 880 170 S 1100 260, 1220 90" />
+      </svg>
+      <p class="slogan__kicker">TRACE = traço / rastro</p>
+      <h2 class="slogan__text" id="sloganText">Precisão em cada movimento.</h2>
+      <p class="slogan__sub">A trajetória de cada comando, desenhada com agilidade, velocidade e controle.</p>
+    </div>
+  </section>
+
+  <!-- 3. LINHAS -->
+  <section class="lines" id="linhas" data-line="standard">
+    <div class="lines__head">
+      <p class="eyebrow">Duas linhas. Uma identidade.</p>
+      <h2 class="lines__title">Escolha sua linha</h2>
+
+      <div class="switch" role="tablist" aria-label="Linha de produtos">
+        <span class="switch__thumb" aria-hidden="true"></span>
+        <button class="switch__btn is-active" role="tab" aria-selected="true" data-line="standard" id="tab-standard" aria-controls="grid">Standard</button>
+        <button class="switch__btn" role="tab" aria-selected="false" data-line="skill" id="tab-skill" aria-controls="grid">Skill</button>
+      </div>
+
+      <div class="line-intro">
+        <div class="line-intro__panel" data-for="standard">
+          <h3>Para todos os dias.</h3>
+          <p>Acessível e funcional. Uso diário, conforto e recursos essenciais sem complexidade desnecessária — para estudantes, profissionais e jogadores casuais.</p>
+        </div>
+        <div class="line-intro__panel" data-for="skill">
+          <h3>Para jogar com precisão.</h3>
+          <p>Sensores, switches e superfícies escolhidos para quem exige mais desempenho — jogadores frequentes e competitivos que valorizam controle, resposta e personalização.</p>
+        </div>
+      </div>
+
+      <div class="filters" role="group" aria-label="Filtrar por categoria">
+        <button class="chip is-active" data-cat="all">Todos</button>
+        <button class="chip" data-cat="headset">Headsets</button>
+        <button class="chip" data-cat="mouse">Mouses</button>
+        <button class="chip" data-cat="teclado">Teclados</button>
+        <button class="chip" data-cat="mousepad">Mousepads</button>
+      </div>
+    </div>
+
+    <div class="grid" id="grid" role="tabpanel" aria-live="polite"></div>
+
+    <p class="disclaimer">Proposta acadêmica: produtos, imagens e especificações são conceituais. Preços médios de referência do varejo brasileiro (2026).</p>
+  </section>
+
+  <footer class="foot">
+    <img src="assets/trace-mark.png" alt="" width="28" height="30">
+    <span>TRACE · Marca própria Inicial Games</span>
+  </footer>
+
+  <!-- MODAL DE PRODUTO -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal__backdrop" data-close></div>
+    <article class="modal__card" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+      <button class="modal__close" type="button" data-close aria-label="Fechar">✕</button>
+      <div class="modal__media">
+        <div class="modal__glow"></div>
+        <img id="mImg" alt="">
+      </div>
+      <div class="modal__body">
+        <p class="modal__tag" id="mTag"></p>
+        <h3 class="modal__title" id="mTitle"></h3>
+        <p class="modal__lead" id="mLead"></p>
+        <p class="modal__desc" id="mDesc"></p>
+        <ul class="modal__specs" id="mSpecs"></ul>
+        <div class="modal__price">
+          <span>Preço médio</span>
+          <strong id="mPrice"></strong>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
